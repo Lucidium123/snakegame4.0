@@ -1,0 +1,61 @@
+document.addEventListener('keydown', function(e) {
+  // Arrow keys
+  if (e.key === 'ArrowLeft' && snake.dx === 0) {
+    snake.dx = -grid;
+    snake.dy = 0;
+  } else if (e.key === 'ArrowUp' && snake.dy === 0) {
+    snake.dy = -grid;
+    snake.dx = 0;
+  } else if (e.key === 'ArrowRight' && snake.dx === 0) {
+    snake.dx = grid;
+    snake.dy = 0;
+  } else if (e.key === 'ArrowDown' && snake.dy === 0) {
+    snake.dy = grid;
+    snake.dx = 0;
+  }
+
+  // WASD keys
+  if (e.key === 'a' && snake.dx === 0) {
+    snake.dx = -grid;
+    snake.dy = 0;
+  } else if (e.key === 'w' && snake.dy === 0) {
+    snake.dy = -grid;
+    snake.dx = 0;
+  } else if (e.key === 'd' && snake.dx === 0) {
+    snake.dx = grid;
+    snake.dy = 0;
+  } else if (e.key === 's' && snake.dy === 0) {
+    snake.dy = grid;
+    snake.dx = 0;
+  }
+});
+
+Old arrow keys 
+
+document.addEventListener('keydown', function(e) {
+  // prevent snake from backtracking on itself by checking that it's 
+  // not already moving on the same axis (pressing left while moving
+  // left won't do anything, and pressing right while moving left
+  // shouldn't let you collide with your own body)
+  
+  // left arrow key
+  if (e.which === 37 && snake.dx === 0) {
+    snake.dx = -grid;
+    snake.dy = 0;
+  }
+  // up arrow key
+  else if (e.which === 38 && snake.dy === 0) {
+    snake.dy = -grid;
+    snake.dx = 0;
+  }
+  // right arrow key
+  else if (e.which === 39 && snake.dx === 0) {
+    snake.dx = grid;
+    snake.dy = 0;
+  }
+  // down arrow key
+  else if (e.which === 40 && snake.dy === 0) {
+    snake.dy = grid;
+    snake.dx = 0;
+  }
+});

@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+canvas {
+    border: 1px solid white;
+}
+scoreBox {
+    width: 150px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}

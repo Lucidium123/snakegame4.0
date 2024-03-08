@@ -1,0 +1,30 @@
+/*
+function gameOver() {
+  // Handle game-over logic
+
+  // Update high scores
+  if (score > 0) {
+      highScores.push(score);
+      highScores.sort((a, b) => b - a); // Sort in descending order
+      highScores = highScores.slice(0, 5); // Keep only the top 5 scores
+      localStorage.setItem('snakeHighScores', JSON.stringify(highScores)); // Store in local storage
+  }
+
+  // Reset score
+  score = 0;
+
+  // Update the score display
+  updateScore();
+}
+*/
+
+/*
+function updateScore() {
+  document.getElementById('scoreElement').innerHTML = 'Score: ' + score;
+  document.getElementById('highScoresElement').innerHTML = 'High Scores: ' + highScores.join(', ');
+}
+*/
+
+//var highScores = [];
+
+//highScores = JSON.parse(localStorage.getItem('snakeHighScores')) || [];
