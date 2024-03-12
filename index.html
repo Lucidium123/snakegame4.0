@@ -18,6 +18,14 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.min.js"></script>
 
     <style>
+        /* Add the new styles here */
+        #username {
+            margin-bottom: 10px;
+            font-size: 16px;
+            padding: 5px;
+        }
+
+        /* Rest of the existing styles */
         html,
         body {
             height: 100%;
@@ -99,6 +107,26 @@
             font-family: "Monaco", monospace;
             /* Add some space below the title */
         }
+
+        #usernameContainer {
+      margin-bottom: 20px;
+    }
+
+    #usernameLabel {
+      display: block;
+      font-size: 18px;
+      color: white;
+      margin-bottom: 5px;
+    }
+
+    #usernameInput {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 200px;
+    }
+
     </style>
 </head>
 
@@ -107,6 +135,8 @@
         <!-- Add a title to the start menu -->
         <div id="gameTitle">Lucid's Snake Game</div>
         <!-- Add an ID to the start button -->
+        <!-- Add an input field for the username -->
+        <input type="text" id="username" placeholder="Enter your username" />
         <button id="startButton" onclick="startGame()">Start Game</button>
     </div>
 
@@ -123,6 +153,15 @@
 
     <script>
         function startGame() {
+            // Get the username from the input field
+            var username = document.getElementById('username').value;
+
+            // Check if a username is entered, use "Anonymous" if not
+            username = username.trim() !== '' ? username : 'Anonymous';
+
+            // Store the username for later use
+            snake.username = username;
+
             // Hide the start menu
             document.getElementById('startMenu').style.display = 'none';
 

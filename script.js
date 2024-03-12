@@ -16,7 +16,8 @@ var snake = {
   dx: grid,
   dy: 0,
   cells: [],
-  maxCells: 4
+  maxCells: 4,
+  username: '', // Add the username property
 };
 
 var apple = {
@@ -145,9 +146,30 @@ document.addEventListener('keydown', function (e) {
   if (e.key === ' ' || e.key === 'Spacebar') {
     togglePause();
   }
-});
+
+    // Reset high scores on Ctrl + Z
+    if (e.ctrlKey && e.key === 'z') {
+      resetHighScores();
+    }
+  });
+  
+  // Function to reset high scores
+  function resetHighScores() {
+    highScores = [];
+    localStorage.removeItem('snakeHighScores');
+    displayHighScores();
+};
 
 function startGame() {
+  // Get the username from the input field
+  var username = document.getElementById('username').value;
+
+  // Check if a username is entered, use "Anonymous" if not
+  username = username.trim() !== '' ? username : 'Anonymous';
+
+  // Store the username for later use
+  snake.username = username;
+
   startMenu.style.display = 'none';
   canvas.style.display = 'block';
   requestAnimationFrame(loop);
@@ -196,12 +218,19 @@ function gameOver() {
   // Set the gameIsOver flag to true
   gameIsOver = true;
 
+  // Get the username from the input field
+  var username = document.getElementById('username').value;
+
+  // Check if a username is entered, use "Anonymous" if not
+  username = username.trim() !== '' ? username : 'Anonymous';
+
   // Check if the current score is a high score
   if (score > 0) {
-    highScores.push(score);
+    // Add the username to the highScores array
+    highScores.push({ score: score, username: username });
 
     // Sort the high scores in descending order
-    highScores.sort((a, b) => b - a);
+    highScores.sort((a, b) => b.score - a.score);
 
     // Keep only the top 5 high scores
     highScores = highScores.slice(0, 5);
@@ -243,6 +272,7 @@ function gameOver() {
   }
 }
 
+
 function displayHighScores() {
   // Display high scores on the page
   var highScoresElement = document.getElementById('highScores');
@@ -250,12 +280,12 @@ function displayHighScores() {
 
   if (highScores.length > 0) {
     highScores.forEach(function (hs, index) {
-      highScoresElement.innerHTML += '<p>' + (index + 1) + '. ' + hs + '</p>';
+      highScoresElement.innerHTML +=
+        '<p>' + (index + 1) + '. ' + hs.username + ': ' + hs.score + '</p>';
     });
   } else {
     highScoresElement.innerHTML += '<p>No high scores yet</p>';
   }
 }
-
 // Display initial high scores when the page loads
 displayHighScores();
